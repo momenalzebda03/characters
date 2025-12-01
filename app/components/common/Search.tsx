@@ -1,10 +1,12 @@
 "use client";
 import { ChangeEvent } from "react";
-import { SearchProps } from "../../types/allTypes";
+import { useCharacters } from "../../store/CharacterContext";
 
-function Search({ onSearch }: SearchProps) {
+function Search() {
+  const { handleSearch } = useCharacters();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+    handleSearch(e.target.value);
   };
 
   return (
