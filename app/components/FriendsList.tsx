@@ -1,28 +1,22 @@
 "use client";
-import React from "react";
-import Friend, { FriendType } from "./Friend";
+import Friend from "./Friend";
 
-type FriendsListProps = {
-  initialFriends: FriendType[];
-  setIsSelectedForm: React.Dispatch<React.SetStateAction<number | null>>;
-  isSelectedForm: number | null;
+export type FriendType = {
+  id: number;
+  name: string;
+  image: string;
 };
 
-function FriendsList({
-  initialFriends,
-  setIsSelectedForm,
-  isSelectedForm,
-}: FriendsListProps) {
+type FriendsListProps = {
+ data: FriendType[];
+};
+
+function FriendsList({ data }: FriendsListProps) {
   return (
     <div>
       <ul>
-        {initialFriends.map((item) => (
-          <Friend
-            key={item.id}
-            item={item}
-            setIsSelectedForm={setIsSelectedForm}
-            isSelectedForm={isSelectedForm}
-          />
+        {data.map((item) => (
+         <Friend key={item.id} item={item} />
         ))}
       </ul>
     </div>

@@ -1,43 +1,44 @@
 "use client";
 import "./assets/css/index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FriendsList from "./components/FriendsList";
 import Search from "./components/Search";
+import baseApi from "./BaseApi/baseApi";
+
+interface Post {
+  id: number;
+  name: string;
+  image: string;
+}
 
 function App() {
-  const [isSelectedForm, setIsSelectedForm] = useState<number | null>(null);
+  const [data, setData] = useState<Post[]>([]);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [initialFriends, setInitialFriends] = useState([
-    {
-      id: 118836,
-      name: "Clark",
-      image: "https://i.pravatar.cc/48?u=118836",
-      balance: -7,
-    },
-    {
-      id: 933372,
-      name: "Sarah",
-      image: "https://i.pravatar.cc/48?u=933372",
-      balance: 20,
-    },
-    {
-      id: 499476,
-      name: "Anthony",
-      image: "https://i.pravatar.cc/48?u=499476",
-      balance: 0,
-    },
-  ]);
+  useEffect(() => {
+    baseApi
+      .get("/character")
+      .then((response) => {
+        setData(response.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  }, []);
 
   return (
     <div className="app">
-      <div className="sidebar">
-        <Search />
-        <FriendsList
-          setIsSelectedForm={setIsSelectedForm}
-          isSelectedForm={isSelectedForm}
-          initialFriends={initialFriends}
-        />
-      </div>
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+      {loading ? (
+        <h2>loading...</h2>
+      ) : (
+        <div className="sidebar">
+          <Search />
+          <FriendsList data={data} />
+        </div>
+      )}
     </div>
   );
 }

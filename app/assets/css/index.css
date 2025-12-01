@@ -18,19 +18,11 @@ html {
 }
 
 body {
-  height: 100vh;
   color: #495057;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.app {
-  min-height: 66vh;
-  display: grid;
-  grid-template-columns: 34rem 44rem;
-  column-gap: 4rem;
-  align-items: start;
+  padding: 30px 0;
 }
 
 .button {
