@@ -5,14 +5,15 @@ import FriendsList from "./components/FriendsList";
 import Search from "./components/Search";
 import baseApi from "./BaseApi/baseApi";
 
-interface Post {
+interface Friend {
   id: number;
   name: string;
   image: string;
 }
 
 function App() {
-  const [data, setData] = useState<Post[]>([]);
+  const [data, setData] = useState<Friend[]>([]);
+  const [filteredData, setFilteredData] = useState<Friend[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -21,6 +22,7 @@ function App() {
       .get("/character")
       .then((response) => {
         setData(response.data.results);
+        setFilteredData(response.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -28,15 +30,26 @@ function App() {
       });
   }, []);
 
+  const handleSearch = (query: string) => {
+    if (!query.trim()) {
+      setFilteredData(data);
+    } else {
+      const results = data.filter((item) =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredData(results);
+    }
+  };
+
   return (
     <div className="app">
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
       {loading ? (
-        <h2>loading...</h2>
+        <h2>Loading...</h2>
       ) : (
         <div className="sidebar">
-          <Search />
-          <FriendsList data={data} />
+          <Search onSearch={handleSearch} />
+          <FriendsList data={filteredData} />
         </div>
       )}
     </div>
