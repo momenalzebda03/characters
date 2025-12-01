@@ -1,7 +1,7 @@
 "use client";
 import "./assets/css/index.css";
 import { useState, useEffect } from "react";
-import FriendsList from "./components/FriendsList";
+import CharacterList from "./components/CharacterList";
 import Search from "./components/Search";
 import baseApi from "./BaseApi/baseApi";
 
@@ -49,7 +49,7 @@ function App() {
       ) : (
         <div className="sidebar">
           <Search onSearch={handleSearch} />
-          <FriendsList data={filteredData} />
+          <CharacterList data={filteredData} />
         </div>
       )}
     </div>

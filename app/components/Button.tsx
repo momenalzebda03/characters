@@ -1,15 +1,16 @@
-import { ReactNode, MouseEventHandler } from "react";
+import { ReactNode } from "react";
+import Link from "next/link";
 
 interface ButtonProps {
+  link: string;
   children: ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-function Button({ children, onClick }: ButtonProps) {
+function Button({ children, link }: ButtonProps) {
   return (
-    <button onClick={onClick} className="button">
+    <Link href={link} className="button">
       {children}
-    </button>
+    </Link>
   );
 }
 

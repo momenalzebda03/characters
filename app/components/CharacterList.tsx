@@ -1,5 +1,5 @@
 "use client";
-import Friend from "./Friend";
+import Character from "./Character";
 
 export type FriendType = {
   id: number;
@@ -16,7 +16,7 @@ function FriendsList({ data }: FriendsListProps) {
     <div>
       <ul>
         {data.map((item) => (
-         <Friend key={item.id} item={item} />
+         <Character key={item.id} item={item} />
         ))}
       </ul>
     </div>

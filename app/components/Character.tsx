@@ -15,7 +15,7 @@ export default function Friend({ item }: FriendProps) {
     <li className="friend-item">
       <img src={item.image} alt={`${item.name}'s avatar`} />
       <h3>{item.name}</h3>
-      <Button>Details</Button>
+      <Button link={`details/${item.id}`}>Details</Button>
     </li>
   );
 }
