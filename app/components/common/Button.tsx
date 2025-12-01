@@ -1,10 +1,5 @@
-import { ReactNode } from "react";
 import Link from "next/link";
-
-interface ButtonProps {
-  link: string;
-  children: ReactNode;
-}
+import { ButtonProps } from "../../types/allTypes";
 
 function Button({ children, link }: ButtonProps) {
   return (

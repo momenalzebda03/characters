@@ -1,19 +1,14 @@
 "use client";
 import "./assets/css/index.css";
 import { useState, useEffect } from "react";
-import CharacterList from "./components/CharacterList";
-import Search from "./components/Search";
+import CharacterList from "./components/character/CharacterList";
+import Search from "./components/common/Search";
 import baseApi from "./BaseApi/baseApi";
-
-interface Friend {
-  id: number;
-  name: string;
-  image: string;
-}
+import { Character } from "./types/allTypes";
 
 function App() {
-  const [data, setData] = useState<Friend[]>([]);
-  const [filteredData, setFilteredData] = useState<Friend[]>([]);
+  const [data, setData] = useState<Character[]>([]);
+  const [filteredData, setFilteredData] = useState<Character[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 

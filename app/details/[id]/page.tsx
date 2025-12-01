@@ -1,6 +1,6 @@
 import Link from "next/link";
 import baseApi from "../../BaseApi/baseApi";
-import CardEpiscode from "../../components/CardEpisode";
+import CardEpiscode from "../../components/character/CardEpisode";
 
 export default async function FriendPage({
   params,

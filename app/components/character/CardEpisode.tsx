@@ -1,6 +1,4 @@
-type url = {
-  epUrl: string;
-};
+import { url } from "../../types/allTypes";
 
 function CardEpiscode({ epUrl }: url) {
     const episodeId = epUrl.split("/").pop();

@@ -1,9 +1,6 @@
 "use client";
 import { ChangeEvent } from "react";
-
-interface SearchProps {
-  onSearch: (query: string) => void;
-}
+import { SearchProps } from "../../types/allTypes";
 
 function Search({ onSearch }: SearchProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
